@@ -5,8 +5,8 @@ import de.hamstersimulator.objectsfirst.external.simple.game.SimpleHamsterGame;
 /**
  * Describe the purpose of this class here.
  *
- * @author (Your name)
- * @version (a version number or a date)
+ * @author Levin Kohler
+ * @version 1.0
  */
 public class PainterPauleHamsterGame extends SimpleHamsterGame {
 
@@ -25,7 +25,45 @@ public class PainterPauleHamsterGame extends SimpleHamsterGame {
 	 */
 	@Override
 	protected void run() {
-		// insert your code here
+		algOne();
+	}
+
+	/*@
+	 @ requires paule != Null
+	 @ ensures paule.mouthEmpty()
+	 @*/
+	/**
+	 * An Algorithm to draw an Spiral of grains in a rectangular Territory.
+	 */
+	private void algOne(){
+		int distanceNextLine = getDistanceToWall()-1;
+		int lineCounter = 0;
+		
+		/*@
+		 @ loop_invariant paule walkes and puts grains
+		 @ unil his mouth is empty.
+		 @*/
+		while (!paule.mouthEmpty()) {
+
+			/*@
+			 @ loop_invariant paule walkes a given distance 
+			 @ and puts a grain on every tile.
+			 @*/
+			for (int i = 0; i < distanceNextLine; i++) {
+				paule.putGrain();
+				paule.move();
+			}
+
+			paule.turnLeft();
+			paule.turnLeft();
+			paule.turnLeft();
+
+			lineCounter = lineCounter + 1;
+
+			if (lineCounter > 2 && (lineCounter % 2) == 1) {
+				distanceNextLine = distanceNextLine - 2;
+			}
+		}
 	}
 
 	////////////////////////////////////////

@@ -5,14 +5,14 @@ import java.util.Date;
 /**
  * Represents a person with a name and birthdate.
  *
- * @author your name
+ * @author Levin Kohler
  */
-public class Person {
+public final class Person {
 	// @ private instance invariant name != null && name.length() > 0;
 	// @ private instance invariant birthDate != null;
 
-	public String name;
-	public Date birthDate;
+	private final String name;
+	private final Date birthDate;
 
 	/*@
 	@ requires name != null && name.length() > 0;
@@ -49,37 +49,5 @@ public class Person {
 	 */
 	public /*@ pure @*/ Date getBirthDate() {
 		return birthDate;
-	}
-
-	/*@
-	@ requires name != null;
-	@ ensures this.name == name;
-	@*/
-	/**
-	 * Sets this person's name.
-	 * @param name The new name.
-	 * @throws IllegalArgumentException If the preconditions are not satisfied.
-	 */
-	public void setName(final String name) throws IllegalArgumentException {
-		if (name == null || name.length() == 0) {
-			throw new IllegalArgumentException("A person may not have a null or empty name.");
-		}
-		this.name = name;
-	}
-
-	/*@
-	@ requires birthDate != null;
-	@ ensures this.birthDate == birthDate;
-	@*/
-	/**
-	 * Sets this person's birth date.
-	 *
-	 * @param birthDate The new birth date.
-	 */
-	public void setBirthDate(final Date birthDate) {
-		if (birthDate == null) {
-			throw new IllegalArgumentException("A person's birth date must not be null.");
-		}
-		this.birthDate = birthDate;
 	}
 }
